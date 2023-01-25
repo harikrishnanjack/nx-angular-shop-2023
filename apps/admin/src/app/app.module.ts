@@ -17,7 +17,7 @@ import {ToolbarModule} from 'primeng/toolbar';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import {InputTextModule} from 'primeng/inputtext';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {ToastModule} from 'primeng/toast';
@@ -32,6 +32,14 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {DropdownModule} from 'primeng/dropdown';
 import {EditorModule} from 'primeng/editor';
+import { UsersListComponent } from './pages/users/users-list/users-list.component';
+import { UsersFormComponent } from './pages/users/users-form/users-form.component';
+import { TagModule } from 'primeng/tag';
+import { InputMaskModule } from 'primeng/inputmask';
+import { FieldsetModule } from 'primeng/fieldset';
+import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
+import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detail.component';
+import { JwtInterceptor, UsersModule } from '@ng-shops/users';
 
 const UX_MODULE=[
   CardModule,
@@ -45,11 +53,28 @@ const UX_MODULE=[
   InputTextareaModule,
   InputSwitchModule,
   DropdownModule,
-  EditorModule
+  EditorModule,
+  TagModule,
+  InputMaskModule,
+  FieldsetModule
 ]
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoriesFormComponent, ProductsListComponent, ProductsFormComponent],
+  declarations: [
+    AppComponent,
+    NxWelcomeComponent,
+    DashboardComponent,
+    ShellComponent,
+    SidebarComponent,
+    CategoriesListComponent,
+    CategoriesFormComponent,
+    ProductsListComponent,
+    ProductsFormComponent,
+    UsersListComponent,
+    UsersFormComponent,
+    OrdersListComponent,
+    OrdersDetailComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -58,9 +83,12 @@ const UX_MODULE=[
     FormsModule,
     ToastModule,
     ReactiveFormsModule,
+    UsersModule,
     ...UX_MODULE
   ],
-  providers: [MessageService,ConfirmationService],
+  providers: [MessageService,ConfirmationService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
