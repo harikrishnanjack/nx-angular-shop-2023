@@ -4,6 +4,10 @@
 @import './base/font.scss';
 @import './base/mixins.scss';
 
+@import 'node_modules/quill/dist/quill.core.css';
+@import 'node_modules/quill/dist/quill.snow.css';
+
+
 //Libraries
 @import '~primeicons/primeicons.css';
 @import '~primeng/resources/themes/saga-blue/theme.css';
