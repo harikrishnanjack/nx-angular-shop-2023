@@ -10,6 +10,8 @@
 @import '~primeng/resources/themes/saga-blue/theme.css';
 @import '~primeng/resources/primeng.min.css';
 @import 'node_modules/primeflex/primeflex.scss';
+@import '~animate.css/animate.css';
+
 
 @import './base/configuration.scss';
 
@@ -27,3 +29,10 @@
 @import './libs/orders/orders.scss';
 @import './libs/users/users.scss';
 @import './libs/ui/ui.scss';
+
+.container{
+  width: 1200px;
+  padding: 15px;
+  margin: 0 auto;
+  background-color: var(--surface-100);
+}

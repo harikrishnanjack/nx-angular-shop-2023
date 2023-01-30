@@ -61,6 +61,7 @@ export class UsersService {
 
   observeCurrentUser() {
     // return this.usersFacade.currentUser$;
+    return new Observable;
   }
 
   isCurrentUserAuth() {
