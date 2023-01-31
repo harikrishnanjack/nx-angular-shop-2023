@@ -20,7 +20,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     private usersService: UsersService,
     private formBuilder: FormBuilder,
     private cartService: CartService,
-    private ordersService: OrdersService
+    private ordersService: OrdersService,
   ) {}
   checkoutFormGroup!: FormGroup;
   isSubmitted = false;
@@ -59,6 +59,8 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       .observeCurrentUser()
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((user:any) => {
+        console.log(user);
+
         if (user) {
           this.userId = user.id;
           this.checkoutForm?.['name'].setValue(user.name);
@@ -96,6 +98,14 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     if (this.checkoutFormGroup.invalid) {
       return;
     }
+
+    // this.ordersService.createCheckoutSession(this.orderItems).subscribe((error:any)=>{
+    //   if(error){
+    //     console.log('error in redirect to payment');
+
+    //   }
+
+    // })
 
     const order: Order = {
       orderItems: this.orderItems,

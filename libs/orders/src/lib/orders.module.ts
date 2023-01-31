@@ -46,7 +46,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     RouterModule.forChild(routes),
-    UsersModule
+    UsersModule,
   ],
   declarations:[CartIconComponent,OrderSummaryComponent,CartPageComponent,CheckoutPageComponent,ThankYouComponent],
   exports:[CartIconComponent]

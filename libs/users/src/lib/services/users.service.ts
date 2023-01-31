@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../models/user';
 import * as countriesLib from 'i18n-iso-countries';
+import { UsersFacade } from '../state/users.facade';
 declare const require:any;
 
 @Injectable({
@@ -12,7 +13,7 @@ declare const require:any;
 export class UsersService {
   apiURLUsers = 'http://localhost:3000/api/v1/users';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private usersFacade:UsersFacade) {
     countriesLib.registerLocale(require('i18n-iso-countries/langs/en.json'));
   }
 
@@ -56,15 +57,14 @@ export class UsersService {
   }
 
   initAppSession() {
-    // this.usersFacade.buildUserSession();
+    this.usersFacade.buildUserSession();
   }
 
   observeCurrentUser() {
-    // return this.usersFacade.currentUser$;
-    return new Observable;
+    return this.usersFacade.currentUser$;
   }
 
   isCurrentUserAuth() {
-    // return this.usersFacade.isAuthenticated$;
+    return this.usersFacade.isAuthenticated$;
   }
 }

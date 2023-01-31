@@ -15,6 +15,8 @@ import {AccordionModule} from 'primeng/accordion';
 import { NavComponent } from './shared/nav/nav.component';
 import { ProductsModule } from '@ng-shops/products';
 import {HttpClientModule} from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 
 const routes: Routes = [
@@ -34,11 +36,13 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     UiModule,
     AccordionModule,
     ProductsModule,
     HttpClientModule,
-    OrdersModule
+    OrdersModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
